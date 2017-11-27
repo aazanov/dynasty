@@ -1,0 +1,14 @@
+include components
+.contacts
+    h3 оставьте ваши данные
+    div и наши специалисты проконсультируют Вас абсолютно бесплатно
+    form.row.center-block(method='POST')
+        .text-field.col-sm-6.col-md-4
+            i.fa.fa-user
+            input(type='text' name='name' placeholder='Ваше имя')
+        .text-field.col-sm-6.col-md-4
+            i.fa.fa-phone
+            input(type='phone' name='phone' placeholder='Ваш телефон')
+        .text-field.col-md-4
+            button(type=submit) отправить
+    div *Ваши данные останутся конфеденциальными

@@ -1,0 +1,54 @@
+mixin text-field($icon, $placeholder, $name)
+    .text-field
+        i.fa(class='fa-'+$icon)
+        input(type='text' placeholder=$placeholder name=$name)
+
+mixin offer($image, $header, $text)
+    .offer
+        .img-circle(style="background-image: url(" + $image + ")")
+        h4 #{$header}
+
+mixin benefit($image, $header, $text)
+    .benefit
+        i.fa.img-circle(class="fa-" + $image)
+        h4 #{$header}
+        p #{$text}
+
+mixin header($text)
+    header.section-header
+        h2 #{$text}
+        .divider
+            hr
+            i.fa.fa-graduation-cap
+            hr
+
+mixin results($header, $date, $s1, $s2, $s3)
+    .results
+        h3 Просрочка #{$header}
+        span.date  Дата: #{$date}
+        span.recovered Взыскано нами:
+        .line
+            span Неустойка:
+            span #{currency($s1)} руб.
+        .line
+            span Штраф:
+            span #{currency($s2)} руб.
+        .line
+            span Моральный вред:
+            span #{currency($s3)} руб.
+        span.total Итого:
+        span.value #{currency($s1 + $s2 + $s3)} руб.
+
+mixin actions($image, $text)
+    .actions.col-md-8.col-md-offset-2
+        i.fa.img-circle(class="fa-" + $image)
+        p #{$text}
+
+mixin stuff($image, $header, $position, $about)
+    .stuff
+        .img-circle(style="background-image: url(" + $image + ")")
+        h3 #{$header}
+        h4 #{$position}
+        p #{$about}
+
+- function currency(value) {var re = '\\d(?=(\\d{3})+\\.)';return value.toFixed(2).replace(new RegExp(re, 'g'), '$& ');}
