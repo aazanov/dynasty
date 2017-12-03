@@ -9,67 +9,71 @@ html(lang="ru")
         link(rel='stylesheet' href='//netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css')
         link(rel='stylesheet' href='css/main.css')
     body
-        header
-            section.first
-                .container
-                    .row
-                        .col-md-3
-                            include components/logo
-                        .col-md-4.col-md-offset-5
-                            .contacts
-                                tel +7 (812) 981-28-43
-                                span г. Санкт Петербург
-            section.second
-                .container
-
         main
             section.first
+                header
+                    .container
+                        .row
+                            .col-md-3
+                                +logo()
+                            .col-md-4.col-md-offset-5
+                                .address
+                                    .pic-line
+                                        i.fa.fa-phone
+                                        tel +7 (812) 981-28-43
+                                    span г. Санкт Петербург
                 .container
-                    .col-sm-8.col-md-5.col-lg-4.col-md-offset-1
-                        h1.
-                            БЕСПЛАТНАЯ ЗАЩИТА ПРАВ ПОТРЕБИТЕЛЕЙ В
-                            СУДЕ ПРИ УЩЕРБЕ СВЫШЕ 50 ТЫСЯЧ РУБ
+                    .row
+                        .col-sm-8.col-md-5.col-lg-4.col-md-offset-1
+                            h1.
+                                взыскание неустойки с застройщика по договору долевого участия в строительстве
+                    .row.text
+                        .col-lg-10.col-lg-offset-1
+                            p.
+                                Санкт-Петербургская  Региональная общественная организация потребителей «Династия» в соответствии с ФЗ РФ от 07.02.1992г. №2300-I “О защите прав потребителей” бесплатно оказывает комплексную юридическую помощь, в том числе консультации, анализ договоров долевого участия, урегулирование спорных ситуаций (в досудебном и судебном порядке).
                 .container
-                    include components/contacts
+                    +contacts-min()
             section.second
                 .container.light
-                    +header('Мы предлагаем')
+                    +header('Мы предлагаем', 'logo-dark.svg')
                     .row
-                        .col-md-4
-                            +offer('assets/img/car.jpg', 'Защита прав автовладельцев')
                         .col-md-4.offer
-                            +offer('assets/img/buildings.jpg', 'Защита прав дольщиков')
-                        .col-md-4.offer
-                            +offer('assets/img/tourism.jpg', 'Защита прав туристов')
+                            +offer('assets/img/buildings.jpg')
+                        .col-md-8
+                            h3 Помощь при взыскании неустойки по ДДУ с застройщика
+                            p.
+                                Взыскать неустойку по ДДУ дольщик имеет право в случае нарушения сроков строительства многоквартирного дома. Если застройщик нарушает условия договора и не выполняет взятые на себя обязательства, то дольщик имеет право взыскать неустойку с застройщика по ДДУ, а то и вовсе расторгнуть договор.
+                            p.
+                                Защитить интересы дольщика могут юристы Санкт-Петербургская  Региональная общественная организация потребителей «Династия».
             section.third
-                .container.light
-                    +header('Когда мы можем помочь?')
+                .container
+                    +header('Когда мы можем помочь?', 'logo-dark.svg')
                     .row
                         .col-md-4
-                            h3 Lorem ipsum
-                            p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi minima nam non quos, repellendus sequi voluptas. Aliquid reprehenderit repudiandae sit.
-                            p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi minima nam non quos, repellendus sequi voluptas. Aliquid reprehenderit repudiandae sit.
+                            +offer2('assets/img/construction.jpg','1. Застройщик нарушает сроки сдачи объекта долевого строительства.')
                         .col-md-4
-                            h3 Lorem ipsum
-                            p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi minima nam non quos, repellendus sequi voluptas. Aliquid reprehenderit repudiandae sit.
-                            p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi minima nam non quos, repellendus sequi voluptas. Aliquid reprehenderit repudiandae sit.
+                            +offer2('assets/img/handover.jpg','2. Застройщик уклоняется от передачи прав собственности.')
                         .col-md-4
-                            h3 Lorem ipsum
-                            p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi minima nam non quos, repellendus sequi voluptas. Aliquid reprehenderit repudiandae sit.
-                            p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi minima nam non quos, repellendus sequi voluptas. Aliquid reprehenderit repudiandae sit.
+                            +offer2('assets/img/breach.jpg','3. Вы хотите прекратить договор долевого участия.')
             section.fourth
                 .container
-                    +header('По закону с неустойкой суд должен взыскать в вашу пользу')
+                    +header('По закону суд должен взыскать в вашу пользу', 'logo.svg')
+                    .row
+                        .col-lg-8.col-lg-offset-2.
+                            В случае несоблюдения Застройщиком сроков сдачи жилья, суд взыскивает в Вашу пользу
                     .row
                         .col-md-4
-                            +benefit('heartbeat', '1. Компенсация моралього вреда', 'ст. 15 Закона «О Защите прав потребителей».')
+                            +benefit('money', '1. Неустойку в полном объеме', '214-ФЗ')
                         .col-md-4
-                            +benefit('money', '2. ШТРАФ В РАЗМЕРЕ 50% ОТ ВЗЫСКАННОЙ СУММЫ', 'п. 6 ст. 13 закона «О Защите прав потребителей»')
+                            +benefit('heartbeat', '2. Компенсация моралього вреда', 'ст. 15 Закона «О Защите прав потребителей».')
+
                         .col-md-4
-                            +benefit('balance-scale', '3. Судебные издержки', 'ст. 98-100 ГПК РФ')
+                            +benefit('balance-scale', '3. Штраф в размере 50% от взысканной суммы', 'п. 6 ст. 13 закона «О Защите прав потребителей»')
+                .container
+                    +calculator()
             section.fifth
                 .container
-                    +header('Мы делаем все возможное, чтобы Вы получили максимальную выплату.')
+                    +header('Мы делаем все возможное, чтобы Вы получили максимальную выплату.', 'logo-dark.svg')
                     .row
                         .col-md-4
                             +results('ООО "Планета"', '01.07.2014', 231283.81, 120641.40, 10000)
@@ -77,62 +81,58 @@ html(lang="ru")
                             +results('ООО "Планета"', '01.07.2014', 231283.81, 120641.40, 10000)
                         .col-md-4
                             +results('ООО "Планета"', '01.07.2014', 231283.81, 120641.40, 10000)
-            section.sixth
 
             section.seventh
                 .container
-                    +header('Наши юристы и адвокаты')
-                    .row
-                        .col-md-5
-                            h3 Lorem ipsum dolor
-                            p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi minima nam non quos, repellendus sequi voluptas. Aliquid reprehenderit repudiandae sit.
-                            p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi minima nam non quos, repellendus sequi voluptas. Aliquid reprehenderit repudiandae sit.
-                        .col-md-7
-                    .row
-                        .col-md-3
-                            +stuff('assets/img/stuff1.jpg', 'Lorem Ipsum', 'Lorem', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.')
-                        .col-md-3
-                            +stuff('assets/img/stuff2.jpg', 'Lorem Ipsum', 'Lorem', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.')
-                        .col-md-3
-                            +stuff('assets/img/stuff3.jpg', 'Lorem Ipsum', 'Lorem', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.')
-                        .col-md-3
-                            +stuff('assets/img/stuff4.jpg', 'Lorem Ipsum', 'Lorem', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.')
+                    +header('Почему стоит обратиться к нам и наши услуги бесплатны?', 'logo.svg')
+                    p.
+                        Санкт-Петербургская  Региональная общественная организация потребителей «Династия» действует на основании  ФЗ № 2300-1 «О защите прав потребителей» от 07.02.1992 г.
+                    p.
+                        В случае отказа застройщика или кредитной организации урегулировать спор с потребителем в досудебном порядке и обращаясь к нам, Вы получаете сумму своих требований, а сверх этого суд взыскивает в пользу вас и общественной организации штраф, в равных долях всоответствии с частью 6 статьи 13. ФЗ № 2300-1 «О защите прав потребителей» от 07.02.1992 г.
                 .container
-                    include components/contacts
+                    +contacts-min()
+            section.ninth
+                .container
+                    +header('Хотите расторгнуть ДДУ и вернуть свои деньги с процентами?', 'logo.svg')
+                    .row
+                        .col-md-8.col-md-offset-2.
+                            В соответствии с 214 ФЗ и ст. 395 ГК РФ, застройщик обязан вернуть Вам деньги по договору с дополнительными процентами.
             section.eighth
                 .container
-                    +header('Ваш застройщик уклоняется от передачи прав собственности?')
+                    +header('Так же мы предлагаем юридическую помощь', 'logo-dark.svg')
                     .row
-                        .col-md-6.col-md-offset-3
-                            h3 Мы готовы взять на себя:
-                    .row
-                        +actions('folder-open-o','1. Сбор необходимых документов')
-                        +actions('pencil-square-o','2. Составление искового заявления и сопровождение дела')
-                        +actions('file-text-o','3. Получение и передачу Вам свидетельства о регистрации права')
-
-            section.nineth
+                        +helps('assets/img/flood.jpg','Защита прав при заливе квартиры.')
+                        +helps('assets/img/car.jpg','Защита прав автовладельцев.')
+                        +helps('assets/img/tourism.jpg','Защита прав туристов.')
+                        +helps('assets/img/furniture.jpg','Защита прав при покупке некачественной мебели.')
+            //section.tenth
+            //    .container.light
+            //section.eleventh
+            //    .container
+            //        +header('О нас', 'logo.svg')
+            section.twelfth
                 .container
-                    +header('Хотите расторгнуть ДДУ и вернуть свои деньги с процентами?')
-            section.tenth
-                .container.light
-            section.eleventh
-                .container
-                    +header('О нас')
+                    +header('Свяжитесь с нами', 'logo.svg')
                     .row
                         .col-md-6
-                            img(src="assets/img/svide.png" alt="document" height=350)
+                            img.img-rounded(src="assets/img/svide.png" alt="document" height=350)
                         .col-md-6.text-left
                             h4 Санкт-Петербургская региональная общественная организация потребителей "ДИНАСТИЯ"
                             p ОГРН: 1157800002250
                             p ИНН: 7811198379
                             p КПП: 781101001
-                            a(href="mailto:info@dinastia-spb.ru") E-mail:info@dinastia-spb.ru
-            section.twelveth
-                .container.light
-                    +header('Контактные данные')
-                .map
-                    iframe(width="100%" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=%D0%A8%D0%BB%D0%B8%D1%81%D1%81%D0%B5%D0%BB%D1%8C%D0%B1%D1%83%D1%80%D0%B3%D1%81%D0%BA%D0%B8%D0%B9%20%D0%BF%D1%80%D0%BE%D1%81%D0%BF%D0%B5%D0%BA%D1%82%2C%2014%2C%20%D0%A1%D0%B0%D0%BD%D0%BA%D1%82-%D0%9F%D0%B5%D1%82%D0%B5%D1%80%D0%B1%D1%83%D1%80%D0%B3%2C%20%D0%A0%D0%BE%D1%81%D1%81%D0%B8%D1%8F&key=AIzaSyA8rAm1rbaZ63B_lmFJozNIrOBU9Tem11I" allowfullscreen)
+                            .pic-line
+                                i.fa.fa-envelope
+                                a(href="mailto:info@dinastia-spb.ru") info@dinastia-spb.ru
+                            .pic-line
+                                i.fa.fa-phone
+                                tel +7 (812) 981-28-43
+                    +contacts-max()
         footer
             section.first
                 .container
-                    .copiright Юридическая компания "Династия". Все права защищены.
+                    .copiright Региональная общественная организация потребителей «Династия». Все права защищены.
+
+        script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js")
+        script(src="https://cdnjs.cloudflare.com/ajax/libs/scrollReveal.js/3.3.6/scrollreveal.min.js")
+        script(src="js/script.js")

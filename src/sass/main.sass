@@ -4,22 +4,8 @@ body
   margin: 0
   padding: 0
 
-  float: left
   min-width: 100%
   font: $main-font
-
-  >header
-    position: absolute
-    z-index: 1
-    top: 0
-    min-width: 100%
-    color: $light-text-color
-    section.first
-      //background-color: transparentize($dark-background, .7)
-
-      .logo
-        left: 50px
-
 
   >footer
     section.first
@@ -30,21 +16,34 @@ body
 
 main
   section.first
-    padding-top: 4em
+    padding-top: 2em
     color: $light-text-color
-    background: linear-gradient(to bottom, transparentize($dark-background, .25) 0%, transparentize($dark-background, .25) 100%), url('../assets/img/main-bg.jpg') no-repeat fixed center / cover
+    background: linear-gradient(to bottom, transparentize($dark-background, .35) 0%, transparentize($dark-background, .35) 100%), url('../assets/img/main-bg.jpg') no-repeat fixed center / cover
     min-height: 600px
+    .text
+      padding-top: 1em
+      font-size: 1.2em
     @media (max-width: $md)
       background-attachment: scroll
+    @media (max-width: $xs)
+      padding-top: 1em
+      background-size: auto 100%
 
   section.second
     .container
       margin-top: -3em
       background-color: $light-background
+      padding-bottom: 2em
+
+  section.third
+    background: linear-gradient(to bottom, transparentize($light-background, .25) 0%, transparentize($light-background, .25) 100%), url('../assets/img/contract.jpg') no-repeat center / cover
 
   section.fourth
     color: $light-text-color
     background: linear-gradient(to bottom, transparentize($dark-background, .25) 0%, transparentize($dark-background, .25) 100%), url('../assets/img/law1.jpg') no-repeat center / cover
+    @media (max-width: $xs)
+      background-size: auto 100%
+      background-position-x: right
 
   section.fifth
     color: $dark-text-color
@@ -55,17 +54,21 @@ main
 
   section.seventh
     color: $light-text-color
-    background: linear-gradient(to bottom, transparentize($dark-background, .25) 0%, transparentize($dark-background, .25) 100%), url('../assets/img/main-bg.jpg') no-repeat fixed center / cover
+    background: linear-gradient(to bottom, transparentize($light-background, .25) 0%, transparentize($dark-background, .25) 100%), url('../assets/img/buisness.jpg') no-repeat center / cover
     .container
       background-color: transparentize($dark-background, .5)
 
 
   section.eighth
-    background: linear-gradient(to bottom, transparentize($light-background, .25) 0%, transparentize($light-background, .25) 100%), url('../assets/img/buisness.jpg') no-repeat center / cover
+    background: linear-gradient(to bottom, transparentize($light-background, .25) 0%, transparentize($light-background, .25) 100%), url('../assets/img/contract.jpg') no-repeat center / cover
 
-  section.nineth
+  section.ninth
     background-color: $dark-background
     color: $light-text-color
+
+  section.twelfth
+    color: $light-text-color
+    background: linear-gradient(to bottom, transparentize($dark-background, .15) 0%, transparentize($dark-background, .15) 100%), url('../assets/img/street.jpg') no-repeat fixed center / cover
 
 
 
@@ -73,23 +76,37 @@ a
   text-decoration: none
   color: inherit
 
+a.wrap
+  display: inline-block
+
 a.logo
   +central()
   flex-direction: column
   height: 137px
+  text-transform: uppercase
+  letter-spacing: .1em
+
+  &:hover
+    text-decoration: none
+    color: inherit
+
+  img
+    width: 190px
+    padding: .3em
 
   span:first-child
-    font-size: 30px
-    text-transform: uppercase
-    letter-spacing: .1em
+    font-size: 1.5em
 
+  span:last-child
+    font-size: 1.2em
+
+
+.address
+  .pic-line
+    justify-content: center
 
 tel
   +central()
-  &:before
-    content: '\f095'
-    font-family: FontAwesome
-    margin-right: 1em
 
 
 .light
@@ -113,23 +130,67 @@ section
     padding-top: 1em
     padding-bottom: 1em
 
-
+h1, h2, h3, h4, p, .pic-line
+  @media (max-width: $xs)
+    text-align: center
 
 h1
+  text-align: left
+  text-transform: uppercase
   font: $header-font
-  font-size: 36px
-  padding-top: 3em
+  font-size: 32px
+  padding-top: 1em
   padding-bottom: 1em
   border-bottom: thin solid $light-text-color
-
+  @media (max-width: $xs)
+    padding-top: 0
+    text-align: center
 
 h2
-
   text-transform: uppercase
-
 
 h3
   text-transform: uppercase
+
+p
+  text-align: left
+  &::first-letter
+    padding-left: 2em
+  @media (max-width: $xs)
+    &::first-letter
+      padding-left: 0
+
+button
+  max-width: 100%
+  font-size: inherit
+  outline: none
+  border: none
+  border-radius: 3px
+  text-transform: uppercase
+  padding: .6em 3em
+  text-align: center
+  background-color: transparentize($button-color, .6)
+  margin: .3em auto
+
+  &:hover
+    background-color: $button-color
+
+input[type], textarea
+  margin: .3em auto
+  line-height: 1.3
+  width: 100%
+  font-size: inherit
+  outline: none
+  border: none
+  border-radius: 3px
+  padding: .6em .5em
+  background-color: $light-background
+  color: $dark-text-color
+  &::-webkit-input-placeholder
+    color: $placeholder-text-color
+
+textarea
+  resize: none
 
 .section-header
   text-align: center
@@ -138,49 +199,54 @@ h3
     +central()
     font-size: 2em
     padding-bottom: 1em
-    i.fa
-      flex: 1
+    img
+      flex: 2
+      margin: 0 1em
+      width: 100px
     hr
       content: ''
       border-top: 2px
-      flex: 2
+      flex: 4
       border-style: groove
 
 
 .contacts
   text-align: center
   margin-bottom: 3em
-  font-size: 1.3em
+  input[type]
+    padding-left: 2em
+    margin-left: -.8em
+
+.contacts-max
+  text-align: center
+  textarea
+    height: 8em
+
 
 
 .text-field
   +central()
-  font-size: 1.5em
-  margin: 1em 0
-  input,button
-    max-width: 100%
-    font-size: inherit
-    outline: none
-    border: none
-    border-radius: 3px
-  input
-    padding: .6em .5em .6em 3em
-    background-color: $light-background
-    &::-webkit-input-placeholder
-      color: $placeholder-text-color
-  button
-    text-transform: uppercase
-    padding: .6em 3em
-    text-align: center
+  font-size: 1.2em
+  margin: .5em 0
+
   i.fa
     color: $placeholder-text-color
-    margin-right: -2em
     position: relative
+    left: .6em
     z-index: 1
 
+.pic-line
+  font-size: 1.2em
+  display: flex
+  align-items: center
+  line-height: 1.8
+  i.fa
+    margin-right: 1em
 
-.img-circle
+
+.img-circle, .img-rounded
   background-size: cover
+  background-position: center
 
 .offer
   +central()
@@ -188,7 +254,6 @@ h3
   .img-circle
     width: 250px
     height: 250px
-    position: absolute
     +central()
     transition: filter .5s
 
@@ -201,16 +266,18 @@ h3
     position: relative
     z-index: 1
 
-  &:hover
-    .img-circle
-      filter: blur(2px) brightness(50%)
-    h4
-      color: $light-text-color
-  @media (max-width: $md)
-    .img-circle
-      filter: blur(2px) brightness(50%)
-    h4
-      color: $light-text-color
+.offer2
+  +central()
+  flex-direction: column
+  border-radius: 6px
+  background-color: transparentize($light-background, .5)
+  margin: 1em 0
+  padding: 1em
+  .img-rounded
+    height: 200px
+    width: 100%
+    max-width: 300px
+
 
 .benefit
   +central()
@@ -271,15 +338,55 @@ h3
     width: 100px
     height: 100px
 
-.stuff
-  padding-top: 2em
-  +central()
-  flex-direction: column
-  .img-circle
-    width: 150px
-    height: 150px
-    background-position: top
-    border: 2px solid $light-text-color
+.helps
+  a.wrap
+    padding-top: 2em
+    +central()
+    flex-direction: column
+    &:hover
+      text-decoration: none
+    .img-circle
+      width: 150px
+      height: 150px
+      background-position: top
+      border: 2px solid $light-text-color
+      margin-bottom: 1em
+    .text
+      height: 3em
+      +central()
+
+.calculator
+  padding: 1em
+  text-align: center
+  border-radius: 5px
+  background-color: transparentize($dark-background, .9)
+  .error
+    color: red
+    font-weight: 700
+    padding-bottom: 1em
+  .result
+    padding: 1rem
+    font-weight: 700
+    font-size: 1.2em
+
+  h2
+    margin-bottom: 1em
+
+  input
+    border: thin solid
+    color: $dark-text-color
+    font-size: 1.1em
+
+  button
+    font-size: 1.3em
+
+  label
+    +central()
+    flex-direction: column
+
+    .notation
+      color: lighten($dark-text-color, 25%)
+      font-size: .8em
 
 
 
