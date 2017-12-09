@@ -13,7 +13,7 @@ const path = {
     babel: 'src/js/**/*'
 };
 
-gulp.task('default', ['pug', 'sass', 'assets', 'babel']);
+gulp.task('default', ['pug', 'sass', 'assets', 'babel', 'php']);
 
 gulp.task('pug', function () {
     return gulp.src('src/index.pug')
@@ -30,6 +30,11 @@ gulp.task('sass', function () {
 gulp.task('assets', function () {
     return gulp.src('src/assets/**/*')
         .pipe(gulp.dest('build/assets'))
+});
+
+gulp.task('php', function () {
+    return gulp.src('src/php/**/*')
+        .pipe(gulp.dest('build/php'))
 });
 
 gulp.task('babel', function () {
