@@ -1,6 +1,6 @@
 mixin logo()
-    a(href='#').logo
-        span организация потребителей
+    .logo
+        span Санкт-Петербургская Региональная общественная организация потребителей
         img(src='assets/img/logo.svg')
         span династия
 
@@ -72,7 +72,7 @@ mixin contacts-min()
     .contacts
         h3 оставьте ваши данные
         div и наши специалисты проконсультируют Вас абсолютно бесплатно
-        form.row.center-block(method='GET')
+        .row.center-block(method='GET')
             .text-field.col-sm-6.col-md-4
                 i.fa.fa-user
                 input(type='text' name='name' placeholder='Ваше имя*')
@@ -80,7 +80,10 @@ mixin contacts-min()
                 i.fa.fa-phone
                 input(type='tel' name='tel' placeholder='Ваш телефон*')
             .text-field.col-md-4
-                button(type=submit) отправить
+                button
+                    span.action отправить
+                    i.fa.fa-spinner.fa-pulse.hidden
+        .error
         div *Ваши данные останутся конфеденциальными
 
 mixin contacts-max()
@@ -89,17 +92,20 @@ mixin contacts-max()
         div и мы свяжемся с Вами удобным для Вас способом
         .row
             .col-md-8.col-md-offset-2
-                form.row.center-block(method='GET')
+                .row.center-block(method='GET')
                     .text-field.col-md-6
                         input(type='text' name='name' placeholder='Ваше имя*')
                     .text-field.col-md-6
                         input(type='tel' name='tel' placeholder='Ваш телефон')
                     .text-field.col-md-12
-                        input(type='email' name='tel' placeholder='Ваш e-mail')
+                        input(type='email' name='mail' placeholder='Ваш e-mail')
                     .text-field.col-md-12
                         textarea(name='message' placeholder='Краткое описание проблемы (не обязательно)')
                     .text-field.col-xs-12
-                        button(type=submit) отправить
+                        button
+                            span.action отправить
+                            i.fa.fa-spinner.fa-pulse.hidden
+        .error
 
 mixin calculator()
     .calculator

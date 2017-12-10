@@ -34,6 +34,7 @@ class Calculator {
         if (isNaN(result)) return this.errorMessage('Проверьте корректность ввода данных');
 
         this.spanResult.innerText = `Расчетная сумма неустойки: ${result.toFixed(2)} руб.`;
+        Calculator.prototype.lastValue = result.toFixed(2);
 
     }
 
@@ -68,7 +69,8 @@ class Sender{
     get values(){
         return {
             name: this.inputName.value,
-            phone: this.inputPhone.value
+            phone: this.inputPhone.value,
+            volume: Calculator.prototype.lastValue || '...'
         }
     }
 
@@ -76,18 +78,18 @@ class Sender{
         this.errorMessage();
         if (!this.validate()) return this.errorMessage('Пожалуйста, проверьте правильность введенных данных');
 
-        Preloader.show();
-        $.post('php/messenger.php', this.values, (data) => {
+        this.buttonSend.querySelector('.fa-spinner').classList.remove('hidden');
+        $.post('php/send.php', this.values, (data) => {
 
             console.log(data);
-            Preloader.hide();
             this.complete();
         });
     }
 
     complete(){
+        this.buttonSend.querySelector('.fa-spinner').classList.add('hidden');
         Sender.prototype.entities.forEach((entity) => {
-            entity.buttonSend.innerText = 'Отправлено!';
+            entity.buttonSend.querySelector('.action').innerText = 'Отправлено!';
             entity.buttonSend.setAttribute('disabled', 'disabled');
         })
     }
@@ -125,9 +127,17 @@ class BigSender extends Sender {
     }
 
     validate(){
-        return !!this.values.name
-            && (this.values.phone || this.values.mail)
+        let result = !!this.values.name
+            && (
+                this.values.phone
+                || this.values.mail
+            )
             && this.values.message;
+
+        if (this.values.phone) result = result && /\d{10,11}/.test(this.values.phone.replace(/\+|-|\(|\)|\s/g, ''));
+        if (this.values.mail) result = result && /(\S|-|\.){1,100}@(\S|-|\.){1,100}\.(\S|-){1,10}/.test(this.values.mail);
+        return result;
+
     }
 
     complete(){
@@ -145,28 +155,6 @@ class BigSender extends Sender {
 }
 
 BigSender.init();
-
-class Preloader{
-    static get preloader() {
-        return $('#preloader');
-    }
-
-    static show(){
-        Preloader.preloader.removeClass('hidden');
-    }
-
-    static hide(){
-        Preloader.preloader.find('.fa').addClass('hidden');
-        Preloader.preloader.find('.thanks').removeClass('hidden');
-        setTimeout(()=> {
-            Preloader.preloader.animate({opacity: 0}, 1000)
-                .addClass('hidden')
-                .css({opacity: 1})
-        }, 40000);
-
-    }
-}
-
 
 
 const sr = ScrollReveal();
