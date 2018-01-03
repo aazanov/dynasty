@@ -11,12 +11,14 @@ class Calculator {
         this.buttonCalc = component.querySelector('button.calc') || {};
 
         this.buttonCalc.onclick = () => this.calc();
+        this.inputSum.onfocus = () => this.formatInput(true);
+        this.inputSum.onblur = () => this.formatInput();
     }
 
     calc(){
         this.errorMessage();
 
-        let sum = this.inputSum.value;
+        let sum = parseFloat(this.inputSum.value.replace(/ /g, ''));
         if (!sum) return this.errorMessage('Ведите сумму договора');
 
         let dateDocument =
@@ -33,13 +35,29 @@ class Calculator {
         let result = (sum * difference * 0.00066);
         if (isNaN(result)) return this.errorMessage('Проверьте корректность ввода данных');
 
-        this.spanResult.innerText = `Расчетная сумма неустойки: ${result.toFixed(2)} руб.`;
-        Calculator.prototype.lastValue = result.toFixed(2);
+        this.spanResult.innerHTML = `Расчетная сумма неустойки: ${Calculator.currency(result).replace(/ /g, '&nbsp;')} руб.`;
+        Calculator.prototype.lastValue = Calculator.currency(result);
 
+    }
+
+    formatInput(mode){
+        if (!this.inputSum.value) return;
+
+        if (mode){
+            this.inputSum.value = parseFloat(this.inputSum.value.replace(/ /g, ''));
+            return this.inputSum.setAttribute('type','number');
+        }
+
+        this.inputSum.setAttribute('type','text');
+        this.inputSum.value = Calculator.currency(parseFloat(this.inputSum.value) || 0);
     }
 
     errorMessage(text){
         this.spanError.innerText = text || '';
+    }
+
+    static currency(value) {
+        return value.toFixed(2).replace(new RegExp('\\d(?=(\\d{3})+\\.)', 'g'), '$& ');
     }
 
     static get entities(){

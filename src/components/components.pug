@@ -114,7 +114,7 @@ mixin calculator()
             .col-md-4
                 label
                     span Стоимость договора, руб
-                    input(type="number" name="sum" placeholder="2 000 000")
+                    input(type="number" name="sum" placeholder="2 000 000" inputmode="numeric" pattern="[0-9.]*")
             .col-md-4
                 label
                     span Дата сдачи по договору
